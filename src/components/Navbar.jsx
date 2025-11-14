@@ -24,12 +24,15 @@ const Navbar = () => {
         </ul>
 
         {/* RIGHT SIDE BUTTON */}
-        <button
-          className="hidden md:block bg-white px-6 py-2 rounded-full font-medium text-gray-900 hover:shadow-lg transition items-center gap-2"
+        <a
+          href="https://trip-planner-nu-wine.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden md:flex bg-white px-6 py-2 rounded-full font-medium text-gray-900 hover:shadow-lg transition items-center gap-2"
         >
           AI Trip Planner
           <span className="text-lg">🤖</span>
-        </button>
+        </a>
 
 
         {/* Mobile Menu Icon */}
@@ -61,6 +64,16 @@ const Navbar = () => {
           <a href="#About" onClick={() => setShowMobileMenu(false)}>About</a>
           <a href="#Projects" onClick={() => setShowMobileMenu(false)}>Projects</a>
           <a href="#Testimonials" onClick={() => setShowMobileMenu(false)}>Testimonials</a>
+          <a 
+            href="https://trip-planner-nu-wine.vercel.app/" 
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setShowMobileMenu(false)}
+            className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium mt-4 flex items-center gap-2"
+          >
+            AI Trip Planner
+            <span className="text-lg">🤖</span>
+          </a>
         </ul>
       </div>
     </div>

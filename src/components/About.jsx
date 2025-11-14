@@ -18,19 +18,19 @@ const About = () => {
         <div className='flex flex-col items-center md:items-start text-gray-600 mt-10'>
             <div className='grid grid-cols-2 gap-6 md:gap-10 w-full 2xl:pr-28'>
                 <div>
-                    <p className='text-4xl font-medium text-gray-800'>0</p>
-                    <p>Years in the Travel Industry – A Fresh Start</p>
+                    <p className='text-4xl font-medium text-gray-800'>1</p>
+                    <p>Year in the Travel Industry – Growing Strong</p>
                 </div>
                 <div>
-                    <p className='text-4xl font-medium text-gray-800'>0</p>
+                    <p className='text-4xl font-medium text-gray-800'>15+</p>
                     <p>Countries Curated for Travellers</p>
                 </div>
                 <div>
-                    <p className='text-4xl font-medium text-gray-800'>0</p>
+                    <p className='text-4xl font-medium text-gray-800'>500+</p>
                     <p>Happy Travelers Guided</p>
                 </div>
                 <div>
-                    <p className='text-4xl font-medium text-gray-800'>0</p>
+                    <p className='text-4xl font-medium text-gray-800'>50+</p>
                     <p>Active Travel Packages</p>
                 </div>
             </div>

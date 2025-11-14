@@ -31,6 +31,9 @@ export const assets = {
     switzerland,
     varanasi,
     bali,
+    profile_img_1,
+    profile_img_2,
+    profile_img_3,
 }
 
 export const projectsData = [

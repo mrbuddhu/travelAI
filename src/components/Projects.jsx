@@ -1,10 +1,12 @@
 import React, { useEffect, useState }from 'react'
 import { assets, projectsData } from '../assets/assets'
 import { motion } from "motion/react"
+import LoadingSpinner from './LoadingSpinner'
 
 const Projects = () => {
     const [ currentIndex, setCurrentIndex ] = useState(0);
     const [ cardsToShow, setCardsToShow ] = useState(1);
+    const [ imagesLoaded, setImagesLoaded ] = useState({});
 
     useEffect(() => {
         const updateCardsToShow= () => {
@@ -59,16 +61,31 @@ const Projects = () => {
             <div style={{transform: `translateX(-${(currentIndex * 100) / cardsToShow}%)`}}
             className='flex gap-8 transition-transform duration-500 ease-in-out'  >
                 {projectsData.map((project, index) => (
-                    <div key={index} className='relative flex-shrink-0 w-full sm:w-1/4 '>
-                        <img src={project.image} alt={project.title} className='h-96 w-full mb-14 object-cover'/>
-                        <div className='absolute bottom-5 left-0 right-0 flex justify-center'>
-                            <div className='inline-block bg-white w-3/4 px-4 py-2 shadow-md'>
-                                <h2 className='text-xl font-semibold text-gray-800 '>
-                                    {project.title}
-                                </h2>
-                                <p className='text-gray-500 text-sm'>
-                                    {project.price} <span className="px-1">|</span> {project.location} 
-                                </p>
+                    <div key={index} className='relative flex-shrink-0 w-full sm:w-1/4 mb-14'>
+                        <div className='relative h-96 w-full bg-gray-200 rounded overflow-hidden'>
+                            {!imagesLoaded[index] && (
+                                <div className='absolute inset-0 flex items-center justify-center z-10'>
+                                    <LoadingSpinner size="lg" />
+                                </div>
+                            )}
+                            <img 
+                                src={project.image} 
+                                alt={project.title} 
+                                className={`h-96 w-full object-cover transition-opacity duration-300 ${
+                                    imagesLoaded[index] ? 'opacity-100' : 'opacity-0'
+                                }`}
+                                loading="lazy"
+                                onLoad={() => setImagesLoaded(prev => ({ ...prev, [index]: true }))}
+                            />
+                            <div className='absolute bottom-5 left-0 right-0 flex justify-center'>
+                                <div className='inline-block bg-white w-3/4 px-4 py-2 shadow-md'>
+                                    <h2 className='text-xl font-semibold text-gray-800 '>
+                                        {project.title}
+                                    </h2>
+                                    <p className='text-gray-500 text-sm'>
+                                        {project.price} <span className="px-1">|</span> {project.location} 
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>

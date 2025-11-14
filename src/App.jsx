@@ -7,6 +7,7 @@ import Testimonials from './components/Testimonials'
 import Contact from './components/Contact'
 import { ToastContainer} from 'react-toastify';
 import Footer from './components/Footer'
+import BackToTop from './components/BackToTop'
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
       <Testimonials/>
       <Contact/>
       <Footer/>
+      <BackToTop/>
     </div>
   )
 }

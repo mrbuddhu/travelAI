@@ -3,20 +3,32 @@ import { assets } from '../assets/assets'
 
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = showMobileMenu ? 'hidden' : 'auto';
   }, [showMobileMenu]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="absolute top-0 left-0 w-full z-10">
-      <div className="container mx-auto flex justify-between items-center py-4 px-6 md:px-20 lg:px-32 bg-transparent">
+    <div className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-md' : 'bg-transparent'
+    }`}>
+      <div className="container mx-auto flex justify-between items-center py-4 px-6 md:px-20 lg:px-32">
 
         {/* LOGO FIX → Add height so it does not stretch navbar */}
         <img src={assets.logo2} alt="logo" className="h-20 w-auto" />
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-7 text-white">
+        <ul className={`hidden md:flex gap-7 ${isScrolled ? 'text-gray-800' : 'text-white'}`}>
           <a href="#Header" className="hover:text-gray-400">Home</a>
           <a href="#About" className="hover:text-gray-400">About</a>
           <a href="#Projects" className="hover:text-gray-400">Trips</a>
@@ -39,8 +51,8 @@ const Navbar = () => {
         <img
           onClick={() => setShowMobileMenu(true)}
           src={assets.menu_icon}
-          className="md:hidden w-7 cursor-pointer"
-          alt=""
+          className={`md:hidden w-7 cursor-pointer ${isScrolled ? 'invert' : ''}`}
+          alt="Menu"
         />
       </div>
 

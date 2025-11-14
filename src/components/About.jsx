@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { assets } from '../assets/assets'
 import { motion } from "motion/react"
+import LoadingSpinner from './LoadingSpinner'
 const About = () => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <motion.div
     initial={{ opacity: 0, x: 200 }}
@@ -14,7 +17,22 @@ const About = () => {
       <p className='text-gray-500 max-w-80 text-center mb-8'>Passionate About Travel, Dedicated to Creating Your Perfect Getaway</p>
 
       <div className='flex flex-col md:flex-row items-center md:items-start md:gap-20'>
-        <img src={assets.aboutp} alt="" className='h-100 w-full sm:w-1/2 max-w-lg rounded-lg' />
+        <div className='relative h-100 w-full sm:w-1/2 max-w-lg rounded-lg overflow-hidden bg-gray-200'>
+          {!imageLoaded && (
+            <div className='absolute inset-0 flex items-center justify-center'>
+              <LoadingSpinner size="lg" />
+            </div>
+          )}
+          <img 
+            src={assets.aboutp} 
+            alt="About Travelia" 
+            className={`h-100 w-full rounded-lg transition-opacity duration-300 ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            loading="lazy"
+            onLoad={() => setImageLoaded(true)}
+          />
+        </div>
         <div className='flex flex-col items-center md:items-start text-gray-600 mt-10'>
             <div className='grid grid-cols-2 gap-6 md:gap-10 w-full 2xl:pr-28'>
                 <div>

@@ -13,10 +13,13 @@ const Header = () => {
         src={assets.header}
         alt="Header Background"
         className="absolute inset-0 w-full h-full object-cover"
+        loading="eager"
       />
       <div className="absolute inset-0 bg-black/40" />
 
-      <Navbar />
+      <div className="relative z-10">
+        <Navbar />
+      </div>
 
       {/* Animate once on mount and stay visible */}
       <motion.div
